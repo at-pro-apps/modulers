@@ -45,5 +45,11 @@
         <p>&copy; 2024 Developed By ATpro Apps</p>
     </footer>
     <script src="scripts.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+    }
+</script>
+
 </body>
 </html>
