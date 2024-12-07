@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكورسات</title>
+    <link rel="stylesheet" href="chemistrycoursesstyles.css">
+    <style>
+        /* Add this to your CSS file */
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            margin: 10px;
+            padding: 15px;
+            position: relative;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .card.active {
+            transform: scale(1.05);
+        }
+
+        .video-container {
+            display: none;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            padding: 15px;
+            max-width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+        }
+
+        .expand-btn {
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .expand-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .lessons-menu {
+            display: none;
+        }
+
+        .card.active .lessons-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>الفنان في الكيمياء</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="subjects.html">اختيار المادة</a></li>
+                    <li><a href="chemistry.html">تسجيل الخروج</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="courses-title">الكورسات المتاحة</h2>
+        <div class="courses-container" id="courses-container">
+            <!-- Courses will be loaded here -->
+        </div>
+        <div class="video-container" id="video-container">
+            <!-- Video will be embedded here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+
+    <script>
+        const courses = {
+            "1": { name: "كورس شهر 1", lessons: ["درس 1", "درس 2"] },
+            "2": { name: "كورس شهر 2", lessons: ["درس 1", "درس 2", "درس 3"] },
+            "3": { name: "كورس شهر 3", lessons: ["درس 1", "درس 2"] },
+            "4": { name: "كورس شهر 4", lessons: ["درس 1", "درس 2", "درس 3"] },
+            "5": { name: "كورس شهر 5", lessons: ["درس 1", "درس 2"] },
+            "6": { name: "كورس شهر 6", lessons: ["درس 1", "درس 2", "درس 3"] },
+            "7": { name: "كورس شهر 7", lessons: ["درس 1", "درس 2"] },
+            "8": { name: "كورس شهر 8", lessons: ["درس 1", "درس 2", "درس 3"] },
+            "9": { name: "كورس شهر 9", lessons: ["درس 1", "درس 2"] },
+            "10": { name: "كورس شهر 10", lessons: ["درس 1", "درس 2", "درس 3", "درس 4"] },
+            "11": { name: "كورس شهر 11", lessons: ["درس 1", "درس 2"] },
+            "12": { name: "كورس شهر 12", lessons: ["درس 1", "درس 2", "درس 3"] }
+        };
+
+        // Map to store unique video IDs for each lesson
+        const videoIds = {
+            "1": { "1": "VIDEO_ID_1_1", "2": "VIDEO_ID_1_2" },
+            "2": { "1": "VIDEO_ID_2_1", "2": "VIDEO_ID_2_2", "3": "VIDEO_ID_2_3" },
+            "3": { "1": "VIDEO_ID_3_1", "2": "VIDEO_ID_3_2" },
+            "4": { "1": "VIDEO_ID_4_1", "2": "VIDEO_ID_4_2", "3": "VIDEO_ID_4_3" },
+            "5": { "1": "VIDEO_ID_5_1", "2": "VIDEO_ID_5_2" },
+            "6": { "1": "VIDEO_ID_6_1", "2": "VIDEO_ID_6_2", "3": "VIDEO_ID_6_3" },
+            "7": { "1": "VIDEO_ID_7_1", "2": "VIDEO_ID_7_2" },
+            "8": { "1": "VIDEO_ID_8_1", "2": "VIDEO_ID_8_2", "3": "VIDEO_ID_8_3" },
+            "9": { "1": "VIDEO_ID_9_1", "2": "VIDEO_ID_9_2" },
+            "10": { "1": "VIDEO_ID_10_1", "2": "VIDEO_ID_10_2", "3": "VIDEO_ID_10_3", "4": "VIDEO_ID_10_4" },
+            "11": { "1": "VIDEO_ID_11_1", "2": "VIDEO_ID_11_2" },
+            "12": { "1": "VIDEO_ID_12_1", "2": "VIDEO_ID_12_2", "3": "VIDEO_ID_12_3" }
+        };
+
+        const loggedInStudent = JSON.parse(localStorage.getItem('loggedInStudent'));
+        if (!loggedInStudent) {
+            alert('من فضلك سجل الدخول أولا');
+            window.location.href = 'chemistry.html';
+        }
+
+        const coursesContainer = document.getElementById('courses-container');
+        const videoContainer = document.getElementById('video-container');
+        const studentCourses = loggedInStudent.courses.split('-');
+
+        studentCourses.forEach(courseId => {
+            const course = courses[courseId];
+            const courseCard = document.createElement('div');
+            courseCard.classList.add('card');
+            
+            const lessonsList = course.lessons.map((lesson, index) => `
+                <li data-course-id="${courseId}" data-lesson-id="${index + 1}">${lesson}</li>
+            `).join('');
+            courseCard.innerHTML = `
+                <h3>${course.name}</h3>
+                <p>تفاصيل ${course.name}</p>
+                <button class="expand-btn">عرض المحتوى</button>
+                <div class="lessons-menu">
+                    <ul>
+                        ${lessonsList}
+                    </ul>
+                </div>
+            `;
+            
+            coursesContainer.appendChild(courseCard);
+        });
+
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.card');
+                card.classList.toggle('active');
+            });
+        });
+
+        document.querySelectorAll('.lessons-menu ul li').forEach(lesson => {
+            lesson.addEventListener('click', () => {
+                const courseId = lesson.getAttribute('data-course-id');
+                const lessonId = lesson.getAttribute('data-lesson-id');
+                const videoId = videoIds[courseId][lessonId];
+                videoContainer.innerHTML = `
+                    <video width="100%" height="auto" controls>
+                        <source src="videos/${videoId}.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                `;
+                videoContainer.style.display = 'block';
+                videoContainer.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

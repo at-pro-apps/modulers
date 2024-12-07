@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="sciencestyles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1> Modulers </h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Main</a></li>
+                    <li><a href="subjects.html">Years</a></li>
+                 
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="login-container">
+            <h2>تسجيل الدخول</h2>
+            <form action="#" method="post">
+                <label for="username">اسم المستخدم</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" name="password" required>
+                
+                <button type="submit">تسجيل الدخول</button>
+            </form>
+        </div>
+    </main>
+    
+    <footer>
+        <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Mock user data for demonstration
+            const users = {
+                "ahmed": {password: "123", courses: "8-9-10-11-12-1"},
+                "ali": {password: "123", courses: "11-12-1"},
+                "mohamed": {password: "kaila", courses: "1-2-3"}
+            };
+
+            // Check if the user exists and the password is correct
+            const user = users[username];
+            if (user && user.password === password) {
+                // Save user data to localStorage
+                localStorage.setItem('loggedInStudent', JSON.stringify(user));
+
+                // Redirect to the courses page
+                window.location.href = '2courses.html';
+            } else {
+                alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+            }
+        });
+    </script>
+</body>
+</html>

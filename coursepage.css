@@ -1,0 +1,155 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Light blue gradient */
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: #1e3c72; /* Blue background */
+    color: #fff; /* White text */
+    border-bottom: 1px solid #162d5c; /* Darker blue border */
+    padding: 10px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff; /* White text */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffeb3b; /* Yellow color on hover */
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+}
+
+.courses-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1e3c72; /* Blue title */
+}
+
+.courses-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.7); /* Transparent white */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    color: #1e3c72; /* Blue header text */
+}
+
+.card p {
+    margin: 0 0 15px;
+}
+
+.expand-btn {
+    background-color: #1e3c72; /* Blue button background */
+    color: #fff; /* White button text */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.expand-btn:hover {
+    background-color: #162d5c; /* Darker blue on hover */
+}
+
+/* Lessons Menu */
+.lessons-menu {
+    margin-top: 10px;
+}
+
+.lessons-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lessons-menu li {
+    margin-bottom: 10px;
+}
+
+.lessons-menu a {
+    color: #1e3c72; /* Blue for links */
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.lessons-menu a:hover {
+    color: #ffeb3b; /* Yellow hover color */
+    text-decoration: underline;
+}
+
+/* Video Player */
+.video-container {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-top: 2px solid #1e3c72;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+.video-container video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+/* Footer */
+footer {
+    background: #1e3c72; /* Blue background */
+    color: #fff; /* White text */
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}

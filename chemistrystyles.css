@@ -1,0 +1,183 @@
+/* إعدادات عامة */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e8fc);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    overflow-x: hidden;
+}
+
+/* الهيدر */
+header {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header h1 {
+    font-size: 1.8em;
+    color: white;
+}
+
+header nav {
+    order: 2;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #ffdd57;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffdd57;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* القسم الرئيسي */
+main {
+    padding: 60px 20px;
+    position: relative;
+    background: url('background.jpg') center center no-repeat, linear-gradient(135deg, #f0f4f8, #d9e8fc);
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* White overlay */
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6); /* White overlay with transparency */
+    z-index: 1;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.8); /* Translucent background for the form */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 40px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    position: relative;
+    z-index: 2; /* Ensure the form is above the overlay */
+}
+
+.login-container h2 {
+    color: #1e3c72;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.login-container label {
+    display: block;
+    margin: 15px 0 5px;
+    color: #1e3c72;
+    font-weight: bold;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.login-container button {
+    background: #ffdd57;
+    color: #1e3c72;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.login-container button:hover {
+    background: #e6c847;
+    transform: translateY(-3px);
+}
+
+footer {
+    background: #1e3c72;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* استجابة للجوال */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .login-container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    .login-container h2 {
+        font-size: 1.5em;
+    }
+
+    .login-container button {
+        width: 100%;
+    }
+}
